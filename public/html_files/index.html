@@ -119,8 +119,8 @@
                     tr.append('<td>' + data.responseJSON[i].email + "</td>");
                     tr.append('<td><i id="trash"  class="fa '+ iconsArray[2] +'"></i><span>&nbsp;&nbsp;&nbsp;&nbsp;</span><i id="update" class="fa edit' + iconsArray[4] + '"></i></td>');
                     tr.click(function(){
-                        // $('#userName').val($(this).find('td').eq(0).html());
-                        // $('#email').val($(this).find('td').eq(1).html());
+                        $('#userName').val($(this).find('td').eq(0).html());
+                        $('#email').val($(this).find('td').eq(1).html());
                     });
                     $('table').append(tr);
                 }
