@@ -1,0 +1,2 @@
+# EventApp
+Manage events
