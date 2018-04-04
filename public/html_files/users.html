@@ -3,7 +3,7 @@
 <head>
 	<title>MyEApp</title>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
-	<script src="/public/javascript_files/tableJQuery.js"></script>
+	
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" ></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -23,14 +23,14 @@
 			        <span class="sr-only">Toggle navigation</span>
 			        <span class="colorwhite" >Menu</span>
 		      	</button>
-			    <a href="./index.html"><img id="userphoto" src="/public/images/jj.jpg" alt="..." class="img-circle xs">
+			    <a href="/"><img id="userphoto" src="public/images/jj.jpg" alt="..." class="img-circle xs">
 									<label for="userphoto" class="userphotolabel">Corinti Johnson</label></a>
 	    	</div>
 	   		<!-- Collect the nav links, forms, and other content for toggling -->
 		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 		      	<ul class="nav navbar-nav">
-			        <li class=""><a href="/"> <span class="sr-only"></span><i class="fa fa-home" aria-hidden="true"> </i> Home</a></li>
-			        <li class="active"><a href="/userspage"><i class="fa fa-users" aria-hidden="true"></i> Users</a><span class="sr-only"></span>
+			        <li class="active"><a href="/"> <span class="sr-only"></span><i class="fa fa-home" aria-hidden="true"> </i> Home</a></li>
+			        <li><a href="/userspage"><i class="fa fa-users" aria-hidden="true"></i> Users</a><span class="sr-only"></span>
 			        </li>
 			        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
 			        	<i class="fa fa-suitcase" aria-hidden="true"></i> My Events 
@@ -52,8 +52,8 @@
 		<div class="row">	
 			<div class="col-md-2 col-xs-2  getstart id="bs-example-navbar-collapse-1">
 			 	<ul class="list-group">
-				   	<li class="list-group-item">Users <span class="badge">12</span></li>
-				   	<li class="list-group-item">Warnings <span class="badge">3</span></li>
+				   	<li class="list-group-item">Users <span class="badge" id="userNumber"></span></li>
+				   	<li class="list-group-item">Warnings <span class="badge"></span></li>
 			  	</ul>
 				<div class="panel-group">
 			    	<div class="panel panel-default">
@@ -62,6 +62,7 @@
 				        	</p>
 			      		</div>
 			      		<div id="collapse1" class="panel-collapse collapse">
+			        		<div class="panel-body">Traction</div>
 			        		<div class="panel-footer">Salesforce</div>
 			      		</div>
 			    	</div>
@@ -158,6 +159,9 @@
                 	$('#userName').val(JSON.stringify(user));
                     $('#email').val($(tr).find('td').eq(1).html());
                 });
+                var countUser = ($('#table tr').length - 1);
+				console.log(countUser);
+				$("#userNumber").text(countUser);
 	        }
 
             $.ajax({
@@ -194,7 +198,6 @@
             $('#clear_user').click(function () {
             });
 
-            
         });
 	 </script>
 </body>
