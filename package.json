@@ -4,7 +4,7 @@
   "description": "demo project.",
   "scripts": {
     "lite": "lite-server --port 10001",
-    "start": "npm run lite"
+    "start": "node server"
   },
   "author": "",
   "license": "ISC",
