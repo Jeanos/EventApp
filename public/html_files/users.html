@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>MyeLife</title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
+	<script src="/public/javascript_files/tableJQuery.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" ></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="/public/css_files/addcss.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="https://netdna.bootstrapcdn.com/font-awesome/3.0.2/css/font-awesome.css" />
+</head>
+<body class="">
+<div>
+	<nav class="navbar navbar-inverse colorwhite">
+	<!-- Menu -->
+	  	<div class="container">
+		    <!-- Brand and toggle get grouped for better mobile display -->
+		    <div class="navbar-header">
+			   	<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+			        <span class="sr-only">Toggle navigation</span>
+			        <span class="colorwhite" >Menu</span>
+		      	</button>
+			    <a href="./index.html"><img id="userphoto" src="/public/images/jj.jpg" alt="..." class="img-circle xs">
+									<label for="userphoto" class="userphotolabel">Corinti Johnson</label></a>
+	    	</div>
+	   		<!-- Collect the nav links, forms, and other content for toggling -->
+		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+		      	<ul class="nav navbar-nav">
+			        <li class=""><a href="/"> <span class="sr-only"></span><i class="fa fa-home" aria-hidden="true"> </i> Home</a></li>
+			        <li class="active"><a href="/userspage"><i class="fa fa-users" aria-hidden="true"></i> Users</a><span class="sr-only"></span>
+			        </li>
+			        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+			        	<i class="fa fa-suitcase" aria-hidden="true"></i> My Events 
+				        <span class="caret"></span></a>
+				        <ul class="dropdown-menu">
+					        <li><a href="/events">Events Page</a></li>
+				        </ul>
+			        </li>
+		      	</ul>
+		      	<ul class="nav navbar-nav navbar-right">
+			       	<li class="rightNavMenu" data-toggle="modal" data-target="#exampleModalCenter"><a href="#"> <span class="sr-only"></span><i class="fa fa-bell" aria-hidden="true"> </i> Notifications</a></li>
+			       	<li class="rightNavMenu"><a href="#"> <span class="sr-only"></span><i class="fa fa-envelope" aria-hidden="true"> </i> Messages</a></li>
+			    </ul>
+		    </div>
+		</div>
+	</nav>
+								<!-- Menu Elements -->
+	<div class="container">
+		<div class="row">	
+			<div class="col-md-2 col-xs-2  getstart id="bs-example-navbar-collapse-1">
+			 	<ul class="list-group">
+				   	<li class="list-group-item">Users <span class="badge">12</span></li>
+				   	<li class="list-group-item">Warnings <span class="badge">3</span></li>
+			  	</ul>
+				<div class="panel-group">
+			    	<div class="panel panel-default">
+			     		<div class="panel-heading fill-div">
+				        	<p class="panel-title"><a data-toggle="collapse" href="#collapse1" class="fill-div">My Emails <span class="glyphicon glyphicon-envelope left"></span></a>
+				        	</p>
+			      		</div>
+			      		<div id="collapse1" class="panel-collapse collapse">
+			        		<div class="panel-footer">Salesforce</div>
+			      		</div>
+			    	</div>
+			 	</div>
+			</div>
+
+			<div class="col-md-10 col-xs-10 getstartcase contentbody">
+				<div class="col-sm-6 heightAdjust getstartcase" id="formUserInsert" ><h4>Node Js With MySQL</h4>
+
+		  			<form method ="" >
+		    			<div class="form-group">
+		     				<label for="userName">Username:</label>
+		      				<input type="text" class="form-control formInsert" id="userName" placeholder="Enter your username" name="userName">
+		    			</div>
+		   				<div class="form-group">
+		      				<label for="email">Email:</label>
+		      				<input type="text" class="form-control" id="email" placeholder="Enter your Email" name="email">
+		    			</div>
+		    			<div class="form-group">
+		      				<label for="password">Password :</label>
+		      				<input type="password" class="form-control" id="password" placeholder="Enter your password" name="password">
+		    			</div>
+		    			<button id="user-submit" type="submit" class="btn btn-default">Submit</button>
+		  			</form>		
+				</div>					
+				<div class="col-sm-6 getstartcase heightAdjust" id="tableUserInsert"><h2>All users</h2><p style="color: black;">This table displays all the users </p>  
+				<table class="table table-striped" id="table" data-show-columns="true" data-height="460">
+			    	<thead>
+			      		<tr>
+			        	<th>Username</th>
+			        	<th>Email</th>
+			        	 <th>Action</th>
+			      		</tr>
+			    	</thead>
+				</table>
+				<!-- Modal -->
+
+			</div>
+		</div>		
+	</div> 	
+	<script type="text/javascript">
+	 	$(document).ready(function () {
+		 	function displayUsers (data) {
+                var tr;
+                var iconsArray = ['fa-search', 'fa-toggle-up','fa fa-trash fa-1', 'fa-link','fa fa-pencil-square-o']
+                $('table').find("tr:gt(0)").remove();
+                    $('#userName').val('');
+                    $('#email').val('');
+                    $('#password').val('');
+                for (var i = 0; i < data.responseJSON.length; i++) {
+                    tr = $('<tr class="datas"/>');
+                    trash = $('.trash');
+                    tr.append('<td class="userName">' + data.responseJSON[i].userName + '</td>');
+                    tr.append('<td>' + data.responseJSON[i].email + "</td>");
+                    tr.append('<td><i id="trash"  class="fa '+ iconsArray[2] +'"></i><span>&nbsp;&nbsp;&nbsp;&nbsp;</span><i id="update" class="fa edit' + iconsArray[4] + '"></i></td>');
+                    tr.click(function(){
+                        // $('#userName').val($(this).find('td').eq(0).html());
+                        // $('#email').val($(this).find('td').eq(1).html());
+                    });
+                    $('table').append(tr);
+                }
+
+                //Delete User
+
+                $('td i').closest("tr").find('#trash').click(function(e){
+                	e.preventDefault();	
+                	var user = {
+                    username:  $(this).closest("tr").find(".userName").text()
+                	};  
+                	console.log(user); 
+	                	$.ajax({
+	                    url: "/delete",
+	                    type: "DELETE",
+	                    contentType: "application/json",
+	                    processData: false,
+	                    data: JSON.stringify(user),
+	                    complete: function () {                     
+	                        $.ajax({
+	                            url: "/users",
+	                            type: "GET",
+	                            contentType: "application/json",
+	                            complete: displayUsers
+	                        });
+	                    }
+	                });               
+                });	
+
+                //Update user
+                 $('td i').closest("tr").find('#update').click(function(e){
+                	e.preventDefault();	
+                	var user = {
+                    username:  $(this).closest("tr").find(".userName").text()
+                	}; 
+                	$('#userName').val(JSON.stringify(user));
+                    $('#email').val($(tr).find('td').eq(1).html());
+                });
+	        }
+
+            $.ajax({
+                url: "/users",
+                type: "GET",
+                contentType: "application/json",
+                complete: displayUsers
+            });
+
+            // Submit button
+            $('#user-submit').click(function(e){
+                e.preventDefault();
+                var user = {
+                    userName:  $('#userName').val(),
+                    email:      $('#email').val(),
+                    password: $('#password').val()
+                };  
+                $.ajax({
+                    url: "/users",
+                    type: "POST",
+                    contentType: "application/json",
+                    processData: false,
+                    data: JSON.stringify(user),
+                    complete: function () {                     
+                        $.ajax({
+                            url: "/users",
+                            type: "GET",
+                            contentType: "application/json",
+                            complete: displayUsers
+                        });
+                    }
+                });
+            });
+            $('#clear_user').click(function () {
+            });
+
+            
+        });
+	 </script>
+</body>
+</html>
