@@ -8,7 +8,7 @@ app.use(bodyParser.json());
 app.use('/public', express.static(path.join(__dirname, 'public')));
 var connection = mysql.createConnection({
     host     : process.env.CLEARDB_HOST || 'localhost',
-    user     : process.env.CLEARDB_USER || 'root',
+    user     : process.env.CLEARDB_USERNAME || 'root',
     password : process.env.CLEARDB_PASSWORD || '',
     database : process.env.CLEARDB_DATABASE || 'test'
 });
