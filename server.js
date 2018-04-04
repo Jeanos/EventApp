@@ -30,7 +30,6 @@ app.delete('/delete', function(req, res) {
         });
 });
 app.get('/users', function(req, res) {
-    console.log("******** I GET USER *********");
     connection.query(
         "SELECT userName, password, email FROM users", 
         function (err, result) {
@@ -40,17 +39,35 @@ app.get('/users', function(req, res) {
     );
 });
 app.post('/users', function(req, res) {
-    console.log("******** I POST USER *********");
-    console.log("******** I GET USER :" + req.body.userName + "','" + req.body.email + "','" + req.body.password);
     connection.query(
-        "INSERT INTO users (userName, email, password) VALUES  ('" + req.body.userName + "','" + req.body.email + "','" + req.body.password + "')", 
-        function (err) {
-            if (err) {
-                console.log("******** ERROR POST USER *********");
-                throw err;
+        "SELECT userName, password, email FROM users WHERE userName = '" + req.body.userName + "'", 
+        function (err, result) {
+            if (err) throw err;
+            if (result.length > 0) {
+                console.log("UPDATE users SET email = '" + req.body.email + "', password = '" + req.body.password + "' WHERE username = '" + req.body.userName + "'");
+                connection.query(
+                    "UPDATE users SET email = '" + req.body.email + "', password = '" + req.body.password + "' WHERE username = '" + req.body.userName + "'", 
+                    function (err) {
+                        if (err) {
+                            throw err;
+                        }
+                        res.send('user has been updated');
+                    }
+                );
             }
-            res.send('user has been inserted');
+            else {
+                connection.query(
+                    "INSERT INTO users (userName, email, password) VALUES  ('" + req.body.userName + "','" + req.body.email + "','" + req.body.password + "')", 
+                    function (err) {
+                        if (err) {
+                            throw err;
+                        }
+                        res.send('user has been inserted');
+                    }
+                );
+            }
         }
     );
+                
 });
 app.listen(port, () => console.log('Example app listening on port!' + port));
