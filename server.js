@@ -13,7 +13,7 @@ var connection = mysql.createConnection({
     database : process.env.CLEARDB_DATABASE || 'test'
 });
 app.get('/', function(req, res) {
-    res.sendFile(path.join(__dirname + "/index.html"));
+    res.sendFile(path.join(__dirname + "/public/html_files/index.html"));
 });
 app.get('/userspage', function(req, res) {
     res.sendFile(path.join(__dirname + "/public/html_files/users.html"));
