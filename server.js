@@ -30,6 +30,7 @@ app.delete('/delete', function(req, res) {
         });
 });
 app.get('/users', function(req, res) {
+    console.log("******** I GET USER *********");
     connection.query(
         "SELECT userName, password, email FROM users", 
         function (err, result) {
@@ -39,10 +40,15 @@ app.get('/users', function(req, res) {
     );
 });
 app.post('/users', function(req, res) {
+    console.log("******** I POST USER *********");
+    console.log("******** I GET USER :" + req.body.userName + "','" + req.body.email + "','" + req.body.password);
     connection.query(
         "INSERT INTO users (userName, email, password) VALUES  ('" + req.body.userName + "','" + req.body.email + "','" + req.body.password + "')", 
         function (err) {
-            if (err) throw err;
+            if (err) {
+                console.log("******** ERROR POST USER *********");
+                throw err;
+            }
             res.send('user has been inserted');
         }
     );
